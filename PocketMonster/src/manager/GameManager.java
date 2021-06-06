@@ -2,6 +2,7 @@ package manager;
 
 import enums.PageType;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,11 +37,17 @@ public class GameManager {
 	}
 	
 	private void saveJson() {
-		String path = System.getProperty("user.dir") + "/data/save.json";
+		String dirPath = System.getProperty("user.dir") + "/data";
+		String filePath = dirPath + "/save.json";
+		
+		File dir = new File(dirPath);
+		if (dir.exists() == false) {
+			dir.mkdir();
+		}
 		
 		JSONObject obj = Player.getInstance().getJsonData();
 		
-		try (FileWriter fw = new FileWriter(path)) {
+		try (FileWriter fw = new FileWriter(filePath)) {
 			fw.write(obj.toJSONString());
 		} catch (Exception e) {
 			e.printStackTrace();
