@@ -1,24 +1,24 @@
 package common;
 
+import enums.SkillType;
 import enums.TeamType;
-
-enum SkillType {
-	ATTACK,
-	DEFENSE,
-	RECOVERY
-}
 
 public class Skill {
 	
+	public int id;
 	public String name;
+	public SkillType type;
+	public int level;
+	public int value;
+	public int sp;
 	
-	private SkillType type;
-	private int value;
-	
-	public Skill(String name) {
+	public Skill(int id, String name, SkillType type, int level, int value, int sp) {
+		this.id = id;
 		this.name = name;
-		this.type = SkillType.ATTACK;
-		this.value = 1;
+		this.type = type;
+		this.level = level;
+		this.value = value;
+		this.sp = sp;
 	}
 	
 	public void fire(PocketMon caster, PocketMon target) {

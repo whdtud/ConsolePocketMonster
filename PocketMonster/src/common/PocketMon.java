@@ -6,6 +6,7 @@ import enums.TeamType;
 
 public class PocketMon extends Character implements Cloneable {
 
+	public int id;
 	public int level;
 	public int hp;
 	public int maxHp;
@@ -14,17 +15,19 @@ public class PocketMon extends Character implements Cloneable {
 	
 	public ArrayList<Skill> skillList = new ArrayList<Skill>();
 	
-	public PocketMon(String name) {
+	public PocketMon(int id, String name, int level, int hp, int sp, ArrayList<Skill> skillList) {
+		this.id = id;
 		this.name = name;
 		this.teamType = TeamType.NEUTRAL;
-		this.level = 1;
-		this.maxHp = 10;
+		this.level = level;
+		this.maxHp = hp;
 		this.hp = maxHp;
+		this.maxSp = sp;
+		this.sp = maxSp;
 		
-		skillList.add(new Skill("몸통박치기"));
-		skillList.add(new Skill("째려보기"));
+		this.skillList = skillList;
 	}
-	
+
 	public PocketMon clone() throws CloneNotSupportedException {
 		return (PocketMon)super.clone();
 	}

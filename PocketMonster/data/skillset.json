@@ -1,9 +1,0 @@
-﻿{"skillset":[
-	{"id":"1","skills":[{"name":"몸통박치기","type":"ATTACK","level":1,"value":1,"sp":1},{"name":"째려보기","type":"ATTACK","level":1,"value":1,"sp":1}],
-	{"id":"2","skills":[{"name":"할퀴기","type":"ATTACK","level":1,"value":1,"sp":1},{"name":"째려보기","type":"ATTACK","level":1,"value":1,"sp":1}],
-	{"id":"3","skills":[{"name":"몸통박치기","type":"ATTACK","level":1,"value":1,"sp":1},{"name":"백만볼트","type":"ATTACK","level":1,"value":5,"sp":1}],
-	{"id":"4","skills":[{"name":"몸통박치기","type":"ATTACK","level":1,"value":1,"sp":1},{"name":"불꽃세례","type":"ATTACK","level":1,"value":5,"sp":1}],
-	{"id":"5","skills":[{"name":"몸통박치기","type":"ATTACK","level":1,"value":1,"sp":1},{"name":"물대포","type":"ATTACK","level":1,"value":5,"sp":1}],
-	{"id":"6","skills":[{"name":"몸통박치기","type":"ATTACK","level":1,"value":1,"sp":1},{"name":"덩굴채찍","type":"ATTACK","level":1,"value":5,"sp":1}],
-	{"id":"7","skills":[{"name":"몸통박치기","type":"ATTACK","level":1,"value":1,"sp":1},{"name":"단단해지기","type":"DEFENSE","level":1,"value":5,"sp":1}],
-]}

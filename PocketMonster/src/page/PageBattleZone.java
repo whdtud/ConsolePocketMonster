@@ -9,7 +9,7 @@ import enums.PageType;
 import enums.TeamType;
 import manager.PageManager;
 import manager.InputManager;
-import manager.PocketMonManager;
+import manager.TableDataManager;
 
 public class PageBattleZone extends Page {
 
@@ -28,7 +28,7 @@ public class PageBattleZone extends Page {
 	@Override
 	public void onChanged() {
 		mainPocketMon = Player.getInstance().getMainPocketMon();
-		wildPocketMon = PocketMonManager.getInstance().getRandom();
+		wildPocketMon = TableDataManager.getInstance().monsterTable.spawnRandom();
 		wildPocketMon.teamType = TeamType.ENEMY;
 		
 		super.onChanged();

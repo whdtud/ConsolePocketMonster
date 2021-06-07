@@ -8,7 +8,7 @@ import enums.PageType;
 import enums.TeamType;
 import manager.PageManager;
 import manager.InputManager;
-import manager.PocketMonManager;
+import manager.TableDataManager;
 
 public class PagePrologue extends Page {
 
@@ -16,21 +16,13 @@ public class PagePrologue extends Page {
 	
 	public PagePrologue() {
 		name = "오박사 연구소";
-		
-		String[] names = {"피카츄", "파이리", "꼬부기", "이상해씨"};
-		
-		for (String name : names) {
-			PocketMon pm = PocketMonManager.getInstance().get(name);
-			pm.teamType = TeamType.FRIENDLY;
-			pocketMonList.add(pm);
-		}
 	}
 	
 	@Override
 	public PageType getType() {
 		return PageType.PROLOGUE;
 	}
-
+	
 	@Override
 	protected void printAction() {
 		Player player = Player.getInstance();
@@ -59,6 +51,14 @@ public class PagePrologue extends Page {
 		System.out.println();
 		System.out.println("오박사 : 반갑네! 난 오박사라고 하네.");
 		System.out.println("오박사 : 함께 할 포켓몬을 선택하게나.");
+
+		String[] names = {"피카츄", "파이리", "꼬부기", "이상해씨"};
+		
+		for (String name : names) {
+			PocketMon pm = TableDataManager.getInstance().monsterTable.spawn(name);
+			pm.teamType = TeamType.FRIENDLY;
+			pocketMonList.add(pm);
+		}
 		
 		int index = -1;
 		while (true) {

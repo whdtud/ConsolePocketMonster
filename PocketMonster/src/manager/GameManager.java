@@ -25,7 +25,7 @@ public class GameManager {
 
 	private void saveJson() {
 		String dirPath = System.getProperty("user.dir") + "/data";
-		String filePath = dirPath + "/save.json";
+		String filePath = dirPath + "/Save.json";
 		
 		File dir = new File(dirPath);
 		if (dir.exists() == false) {

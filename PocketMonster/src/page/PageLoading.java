@@ -13,6 +13,7 @@ import common.Player;
 import common.PocketMon;
 import enums.PageType;
 import manager.PageManager;
+import manager.TableDataManager;
 
 public class PageLoading extends Page {
 
@@ -44,7 +45,9 @@ public class PageLoading extends Page {
 	
 	@SuppressWarnings("unchecked")
 	private void loadJson() {
-		String path = System.getProperty("user.dir") + "/data/save.json";
+		TableDataManager.getInstance().loadJson();
+		
+		String path = System.getProperty("user.dir") + "/data/Save.json";
 		
 		JSONParser parser = new JSONParser();
 		
@@ -59,14 +62,16 @@ public class PageLoading extends Page {
 			Iterator<JSONObject> iter = pocketMonList.iterator();
 			while (iter.hasNext()) {
 				JSONObject pocketMonObj = iter.next();
-				String name = (String)pocketMonObj.get("name");
-				PocketMon pocketMon = new PocketMon(name);
+				
+				int id = ((Long)pocketMonObj.get("id")).intValue();
+				
+				PocketMon pocketMon = TableDataManager.getInstance().monsterTable.spawn(id);
 				pocketMon.level = ((Long)pocketMonObj.get("level")).intValue();
 				pocketMon.hp = ((Long)pocketMonObj.get("hp")).intValue();
 				pocketMon.maxHp = ((Long)pocketMonObj.get("maxHp")).intValue();
 				pocketMon.sp = ((Long)pocketMonObj.get("sp")).intValue();
 				pocketMon.maxSp = ((Long)pocketMonObj.get("maxSp")).intValue();
-				
+
 				Player.getInstance().addPocketMon(pocketMon);
 			}
 		} catch (IOException e) {

@@ -60,7 +60,7 @@ public class Player extends Character {
 		JSONArray arr = new JSONArray();
 		for (PocketMon pm : pocketMonList) {
 			JSONObject obj = new JSONObject();
-			obj.put("name", pm.name);
+			obj.put("id", pm.id);
 			obj.put("level", pm.level);
 			obj.put("hp", pm.hp);
 			obj.put("maxHp", pm.maxHp);

@@ -24,15 +24,12 @@ public class PageManager {
 	}
 	
 	private PageManager() {
+		pageMap.put(PageType.LOADING, new PageLoading());
 		pageMap.put(PageType.PROLOGUE, new PagePrologue());
 		pageMap.put(PageType.WORLD, new PageWorld());
 		pageMap.put(PageType.BATTLE_ZONE, new PageBattleZone());
 		pageMap.put(PageType.POCKET_MON_CENTER, new PagePocketMonCenter());
 		pageMap.put(PageType.EXIT, new PageExit());
-	}
-	
-	public Page getCurrentPage() {
-		return currentPage;
 	}
 
 	public void changePage(int index) {
@@ -53,7 +50,8 @@ public class PageManager {
 		ArrayList<Page> list = new ArrayList<Page>();
 		
 		for (Map.Entry<PageType, Page> entry : pageMap.entrySet()) {
-			if (entry.getKey() != currentPage.getType()) {
+			if (entry.getKey() != currentPage.getType() &&
+				entry.getKey() != PageType.LOADING) {
 				list.add(entry.getValue());
 			}
 		}
