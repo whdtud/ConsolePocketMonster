@@ -2,11 +2,12 @@ package enums;
 
 public enum PageType {
 	NONE(0),
-	BATTLE_ZONE(1),
-	POCKET_MON_CENTER(2),
-	WORLD(3),
-	PROLOGUE(4),
-	EXIT(5);
+	LOADING(1),
+	BATTLE_ZONE(2),
+	POCKET_MON_CENTER(3),
+	WORLD(4),
+	PROLOGUE(5),
+	EXIT(6);
 	
 	private int value;
 	

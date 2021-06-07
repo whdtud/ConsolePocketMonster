@@ -25,6 +25,13 @@ public class Player extends Character {
 		teamType = TeamType.FRIENDLY;
 	}
 	
+	public boolean wasInit() {
+		if (pocketMonList.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+	
 	public String getName() {
 		return name;
 	}
