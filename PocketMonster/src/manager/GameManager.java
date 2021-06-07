@@ -12,6 +12,7 @@ import common.Player;
 public class GameManager {
 
 	public void init() {
+		PageManager.getInstance().setCurrentPage(PageType.LOADING);
 	}
 	
 	public void release() {
@@ -20,7 +21,15 @@ public class GameManager {
 	}
 	
 	public void start() {
-		PageManager.getInstance().changePage(PageType.LOADING);
+		PageManager pm = PageManager.getInstance();
+		
+		while (true) {
+			PageManager.getInstance().update();
+			
+			if (pm.getCurrentPageType() == PageType.EXIT) {
+				break;
+			}
+		}
 	}
 
 	private void saveJson() {

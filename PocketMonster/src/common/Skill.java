@@ -29,7 +29,14 @@ public class Skill {
 		
 		switch (type) {
 		case ATTACK:
-			System.out.printf("%d의 데미지를 입혔다!!\n", value);
+			StringBuilder sb = new StringBuilder();
+			sb.append("%d의 데미지를 ");
+			if (caster.teamType == TeamType.FRIENDLY) {
+				sb.append("입혔다!\n");	
+			} else {
+				sb.append("입었다!\n");
+			}
+			System.out.printf(sb.toString(), value);
 			target.onDamaged(value);
 			break;
 		case DEFENSE:

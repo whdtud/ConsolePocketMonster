@@ -32,18 +32,32 @@ public class PageManager {
 		pageMap.put(PageType.EXIT, new PageExit());
 	}
 
-	public void changePage(int index) {
+	public PageType getCurrentPageType() {
+		return currentPage.getType();
+	}
+	
+	public void setCurrentPage(Page page) {
+		currentPage = page;
+	}
+	
+	public void setCurrentPage(PageType type) {
+		setCurrentPage(pageMap.get(type));
+	}
+
+	public void setCurrentPage(int index) {
 		PageType type = PageType.values()[index]; 
-		changePage(type);
+		setCurrentPage(type);
 	}
 	
-	public void changePage(PageType type) {
-		changePage(pageMap.get(type));
+	public void forceChangePage(Page page) {
+		setCurrentPage(page);
+		update();
 	}
 	
-	public void changePage(Page area) {
-		currentPage = area;
-		currentPage.onChanged();
+	public void update() {
+		currentPage.init();
+		currentPage.printName();
+		currentPage.printAction();
 	}
 	
 	public ArrayList<Page> getOtherPageList() {

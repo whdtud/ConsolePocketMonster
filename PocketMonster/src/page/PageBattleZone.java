@@ -16,6 +16,8 @@ public class PageBattleZone extends Page {
 	private PocketMon mainPocketMon;
 	private PocketMon wildPocketMon;
 	
+	private boolean isPlaying;
+	
 	public PageBattleZone() {
 		name = "전투 지역";
 	}
@@ -26,19 +28,19 @@ public class PageBattleZone extends Page {
 	}
 	
 	@Override
-	public void onChanged() {
+	public void init() {
+		isPlaying = true;
+		
 		mainPocketMon = Player.getInstance().getMainPocketMon();
 		wildPocketMon = TableDataManager.getInstance().monsterTable.spawnRandom();
 		wildPocketMon.teamType = TeamType.ENEMY;
-		
-		super.onChanged();
 	}
 	
 	@Override
 	public void printAction() {
 		System.out.printf("앗! 야생의 %s(이)가 나타났다!\n", wildPocketMon.name);
 		
-		while (true) {
+		while (isPlaying) {
 			System.out.println("[1] 싸우다 [2] 포켓몬 교체 [3] 가방 [4] 도망치다");
 			
 			int input = InputManager.getInstance().getScanner().nextInt();
@@ -51,11 +53,13 @@ public class PageBattleZone extends Page {
 				break;
 			case 3:
 				openInventory();
+				break;
 			case 4:
 				escape();
-				return;
+				break;
 			}	
 		}
+		System.out.println();
 	}
 	
 	private void battle() {
@@ -76,25 +80,39 @@ public class PageBattleZone extends Page {
 		Skill skill = skillList.get(skillIndex);
 		skill.fire(mainPocketMon, wildPocketMon);
 		
+		System.out.println("====================");
+		
 		if (wildPocketMon.isAlive() == false) {
+			isPlaying = false;
+			
+			System.out.printf("적의 %s는(은) 쓰러졌다!!\n", wildPocketMon.name);
 			return;
 		}
 		
 		wildPocketMon.fireSkillByRandom(mainPocketMon);
+		
+		if (mainPocketMon.isAlive() == false) {
+			isPlaying = false;
+			
+			System.out.printf("%s가(이) 쓰러졌다!1!\n", mainPocketMon.name);
+			return;
+		}
 	}
 	
 	private void changePocketMon() {
-		
+		System.out.println("미구현");
 	}
 	
 	private void openInventory() {
-		
+		System.out.println("미구현");
 	}
 	
 	private void escape() {
+		isPlaying = false;
+		
 		System.out.println("성공적으로 도망쳤다.");
 		System.out.println();
 		
-		PageManager.getInstance().changePage(PageType.WORLD);
+		PageManager.getInstance().setCurrentPage(PageType.WORLD);
 	}
 }

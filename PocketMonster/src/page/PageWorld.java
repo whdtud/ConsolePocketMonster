@@ -18,6 +18,11 @@ public class PageWorld extends Page {
 	}
 
 	@Override
+	public void init() {
+		
+	}
+	
+	@Override
 	public void printAction() {
 		ArrayList<Page> areaList = PageManager.getInstance().getOtherPageList();
 		
@@ -31,7 +36,7 @@ public class PageWorld extends Page {
 			int input = InputManager.getInstance().getScanner().nextInt();
 			int areaIndex = input - 1;
 			if (areaIndex >= 0 && areaIndex < areaList.size()) {
-				PageManager.getInstance().changePage(areaList.get(areaIndex));
+				PageManager.getInstance().forceChangePage(areaList.get(areaIndex));
 				break;
 			}
 			

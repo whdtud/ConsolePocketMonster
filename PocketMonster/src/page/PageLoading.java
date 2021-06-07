@@ -12,6 +12,7 @@ import org.json.simple.parser.JSONParser;
 import common.Player;
 import common.PocketMon;
 import enums.PageType;
+import enums.TeamType;
 import manager.PageManager;
 import manager.TableDataManager;
 
@@ -19,7 +20,7 @@ public class PageLoading extends Page {
 
 	
 	public PageLoading() {
-		name = "로딩";
+		name = null;
 	}
 	
 	@Override
@@ -28,18 +29,18 @@ public class PageLoading extends Page {
 	}
 	
 	@Override
-	public void onChanged() {
-		printAction();
+	public void init() {
+		// do nothing.
 	}
-	
+
 	@Override
-	protected void printAction() {
+	public void printAction() {
 		loadJson();
 		
 		if (Player.getInstance().wasInit()) {
-			PageManager.getInstance().changePage(PageType.WORLD);	
+			PageManager.getInstance().setCurrentPage(PageType.WORLD);	
 		} else {
-			PageManager.getInstance().changePage(PageType.PROLOGUE);
+			PageManager.getInstance().setCurrentPage(PageType.PROLOGUE);
 		}
 	}
 	
@@ -71,6 +72,7 @@ public class PageLoading extends Page {
 				pocketMon.maxHp = ((Long)pocketMonObj.get("maxHp")).intValue();
 				pocketMon.sp = ((Long)pocketMonObj.get("sp")).intValue();
 				pocketMon.maxSp = ((Long)pocketMonObj.get("maxSp")).intValue();
+				pocketMon.teamType = TeamType.FRIENDLY;
 
 				Player.getInstance().addPocketMon(pocketMon);
 			}

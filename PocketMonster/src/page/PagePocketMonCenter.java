@@ -14,6 +14,11 @@ public class PagePocketMonCenter extends Page {
 	}
 	
 	@Override
+	public void init() {
+
+	}
+	
+	@Override
 	public void printAction() {
 		
 	}

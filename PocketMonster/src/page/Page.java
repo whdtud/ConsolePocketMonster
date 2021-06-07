@@ -8,14 +8,14 @@ public abstract class Page {
 	
 	public abstract PageType getType();
 	
-	protected void printName() {
+	public abstract void init();
+	
+	public void printName() {
+		if (name == null) {
+			return;
+		}
 		System.out.printf("[==%s==]\n", name);
 	}
 	
-	protected abstract void printAction();
-	
-	public void onChanged() {
-		printName();
-		printAction();
-	}
+	public abstract void printAction();
 }
