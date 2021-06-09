@@ -37,7 +37,7 @@ public class PocketMon extends Character implements Cloneable {
 	}
 	
 	public void onRecovery(int value) {
-		hp += value;
+		hp = Math.min(hp + value, maxHp);
 	}
 	
 	public boolean isAlive() {
