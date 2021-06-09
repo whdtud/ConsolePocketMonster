@@ -86,6 +86,9 @@ public class PageBattleZone extends Page {
 			isPlaying = false;
 			
 			System.out.printf("적의 %s는(은) 쓰러졌다!!\n", wildPocketMon.name);
+
+			mainPocketMon.addExp(wildPocketMon.exp);
+			
 			return;
 		}
 		
@@ -94,7 +97,7 @@ public class PageBattleZone extends Page {
 		if (mainPocketMon.isAlive() == false) {
 			isPlaying = false;
 			
-			System.out.printf("%s가(이) 쓰러졌다!1!\n", mainPocketMon.name);
+			System.out.printf("%s가(이) 쓰러졌다!!\n", mainPocketMon.name);
 			return;
 		}
 	}

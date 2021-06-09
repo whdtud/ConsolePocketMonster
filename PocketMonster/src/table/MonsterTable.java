@@ -22,6 +22,7 @@ class MonsterData {
 	public int level;
 	public int hp;
 	public int sp;
+	public int exp;
 	public int[] skillIds;
 }
 
@@ -48,10 +49,8 @@ public class MonsterTable {
 		if (data == null) {
 			return null;
 		}
-		
-		ArrayList<Skill> skillList = TableDataManager.getInstance().skillTable.getSkillList(data.skillIds);
-		
-		return new PocketMon(data.id, data.name, data.level, data.hp, data.sp, skillList);
+
+		return spawn(data);
 	}
 	
 	public PocketMon spawn(int id) {
@@ -60,9 +59,13 @@ public class MonsterTable {
 			return null;
 		}
 		
+		return spawn(data);
+	}
+	
+	public PocketMon spawn(MonsterData data) {
 		ArrayList<Skill> skillList = TableDataManager.getInstance().skillTable.getSkillList(data.skillIds);
 		
-		return new PocketMon(data.id, data.name, data.level, data.hp, data.sp, skillList);
+		return new PocketMon(data.id, data.name, data.level, data.hp, data.sp, data.exp, skillList);
 	}
 	
 	public PocketMon spawnRandom() {
@@ -98,6 +101,7 @@ public class MonsterTable {
 				data.level = ((Long)obj.get("level")).intValue();
 				data.hp = ((Long)obj.get("hp")).intValue();
 				data.sp = ((Long)obj.get("sp")).intValue();
+				data.exp = ((Long)obj.get("exp")).intValue();
 				
 				JSONArray skillIds = (JSONArray)obj.get("skillIds");
 				Iterator<JSONObject> skillIter = skillIds.iterator();

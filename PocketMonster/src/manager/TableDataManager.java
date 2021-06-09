@@ -1,12 +1,12 @@
 package manager;
 
-import table.MonsterTable;
-import table.SkillTable;
+import table.*;
 
 public class TableDataManager {
 	
 	public MonsterTable monsterTable;
 	public SkillTable skillTable;
+	public ExpTable expTable;
 	
 	private static TableDataManager instance;
 	public static TableDataManager getInstance() {
@@ -19,10 +19,12 @@ public class TableDataManager {
 	private TableDataManager() {
 		monsterTable = new MonsterTable();
 		skillTable = new SkillTable();
+		expTable = new ExpTable();
 	}
 	
-	public void loadJson() {
+	public void load() {
 		monsterTable.loadJon();
 		skillTable.loadJon();
+		expTable.load();
 	}
 }

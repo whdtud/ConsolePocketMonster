@@ -3,6 +3,7 @@ package common;
 import java.util.ArrayList;
 
 import enums.TeamType;
+import manager.TableDataManager;
 
 public class PocketMon extends Character implements Cloneable {
 
@@ -12,10 +13,12 @@ public class PocketMon extends Character implements Cloneable {
 	public int maxHp;
 	public int sp;
 	public int maxSp;
+	public int exp;
+	public int maxExp;
 	
 	public ArrayList<Skill> skillList = new ArrayList<Skill>();
 	
-	public PocketMon(int id, String name, int level, int hp, int sp, ArrayList<Skill> skillList) {
+	public PocketMon(int id, String name, int level, int hp, int sp, int exp, ArrayList<Skill> skillList) {
 		this.id = id;
 		this.name = name;
 		this.teamType = TeamType.NEUTRAL;
@@ -24,6 +27,8 @@ public class PocketMon extends Character implements Cloneable {
 		this.hp = maxHp;
 		this.maxSp = sp;
 		this.sp = maxSp;
+		this.maxExp = exp;
+		this.exp = maxExp;
 		
 		this.skillList = skillList;
 	}
@@ -33,11 +38,31 @@ public class PocketMon extends Character implements Cloneable {
 	}
 	
 	public void onDamaged(int value) {
-		hp -= value;
+		hp = Math.max(0, hp - value);
 	}
 	
 	public void onRecovery(int value) {
 		hp = Math.min(hp + value, maxHp);
+	}
+	
+	public void addExp(int value) {
+		int totalExp = exp + value;
+		
+		while (totalExp / maxExp >= 1) {
+			totalExp -= maxExp;
+			
+			levelUp();
+		}
+		
+		exp = totalExp;
+	}
+	
+	public void levelUp() {
+		level++;
+		
+		maxExp = TableDataManager.getInstance().expTable.get(level);
+		
+		System.out.printf("%s의 레벨이 올랐습니다!!\n", name);
 	}
 	
 	public boolean isAlive() {
