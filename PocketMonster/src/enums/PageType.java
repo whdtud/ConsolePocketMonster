@@ -7,7 +7,8 @@ public enum PageType {
 	POCKET_MON_CENTER(3),
 	WORLD(4),
 	PROLOGUE(5),
-	EXIT(6);
+	EXIT(6),
+	CHANGE_POCKET_MON(7);
 	
 	private int value;
 	

@@ -24,7 +24,7 @@ public class PageWorld extends Page {
 	
 	@Override
 	public void printAction() {
-		ArrayList<Page> areaList = PageManager.getInstance().getOtherPageList();
+		ArrayList<Page> areaList = PageManager.getInstance().getWorldActionList();
 		
 		while (true) {
 			System.out.println("입장할 지역을 선택해주세요.");

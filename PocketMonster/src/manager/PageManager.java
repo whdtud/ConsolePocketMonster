@@ -30,6 +30,7 @@ public class PageManager {
 		pageMap.put(PageType.BATTLE_ZONE, new PageBattleZone());
 		pageMap.put(PageType.POCKET_MON_CENTER, new PagePocketMonCenter());
 		pageMap.put(PageType.EXIT, new PageExit());
+		pageMap.put(PageType.CHANGE_POCKET_MON, new PageChangePocketMon());
 	}
 
 	public PageType getCurrentPageType() {
@@ -54,18 +55,28 @@ public class PageManager {
 		update();
 	}
 	
+	public void forceChangePage(PageType type) {
+		setCurrentPage(type);
+		update();
+	}
+	
+	public void worldMask() {
+		
+	}
+	
 	public void update() {
 		currentPage.init();
 		currentPage.printName();
 		currentPage.printAction();
 	}
 	
-	public ArrayList<Page> getOtherPageList() {
+	public ArrayList<Page> getWorldActionList() {
 		ArrayList<Page> list = new ArrayList<Page>();
 		
 		for (Map.Entry<PageType, Page> entry : pageMap.entrySet()) {
-			if (entry.getKey() != currentPage.getType() &&
-				entry.getKey() != PageType.LOADING) {
+			if (entry.getKey() == PageType.BATTLE_ZONE || 
+				entry.getKey() == PageType.POCKET_MON_CENTER ||
+				entry.getKey() == PageType.EXIT) {
 				list.add(entry.getValue());
 			}
 		}

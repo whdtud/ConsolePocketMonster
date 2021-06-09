@@ -103,7 +103,7 @@ public class PageBattleZone extends Page {
 	}
 	
 	private void changePocketMon() {
-		System.out.println("미구현");
+		PageManager.getInstance().forceChangePage(PageType.CHANGE_POCKET_MON);
 	}
 	
 	private void openInventory() {
