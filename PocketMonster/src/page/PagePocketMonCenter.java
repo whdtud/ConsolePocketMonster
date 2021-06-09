@@ -10,6 +10,8 @@ import manager.PageManager;
 
 public class PagePocketMonCenter extends Page {
 
+	private final int HEAL_POWER = 999999999;
+	
 	public PagePocketMonCenter() {
 		name = "포켓몬 센터";
 	}
@@ -47,7 +49,7 @@ public class PagePocketMonCenter extends Page {
 	private void recovery() {
 		ArrayList<PocketMon> list = Player.getInstance().pocketMonList;
 		for (PocketMon pm : list) {
-			pm.onRecovery(Integer.MAX_VALUE);;
+			pm.onRecovery(HEAL_POWER);;
 		}
 		
 		System.out.println("치료가 완료되었습니다.");
