@@ -8,8 +8,8 @@ import common.Skill;
 import enums.PageType;
 import enums.TeamType;
 import manager.PageManager;
+import manager.SpawnManager;
 import manager.InputManager;
-import manager.TableDataManager;
 
 public class PageBattleZone extends Page {
 
@@ -34,7 +34,7 @@ public class PageBattleZone extends Page {
 		isPlaying = true;
 		
 		mainPocketMon = Player.getInstance().getMainPocketMon();
-		wildPocketMon = TableDataManager.getInstance().monsterTable.spawnRandom();
+		wildPocketMon = SpawnManager.getInstance().spawnRandomPocketMon();
 		wildPocketMon.teamType = TeamType.ENEMY;
 
 		System.out.printf("앗! 야생의 %s(이)가 나타났다!\n", wildPocketMon.name);
@@ -45,8 +45,10 @@ public class PageBattleZone extends Page {
 		if (prevPage == null)
 			return;
 		
-		if (prevPage.getType() == PageType.CHANGE_POCKET_MON)
-			isPlaying = true;
+		if (prevPage.getType() == PageType.CHANGE_POCKET_MON ||
+			prevPage.getType() == PageType.INVENTORY) {
+			isPlaying = true;	
+		}
 	}
 	
 	@Override
@@ -66,11 +68,12 @@ public class PageBattleZone extends Page {
 				break;
 			case 3:
 				openInventory();
+				isPlaying = false;
 				break;
 			case 4:
 				escape();
 				break;
-			}	
+			}
 		}
 	}
 	
@@ -125,7 +128,7 @@ public class PageBattleZone extends Page {
 	}
 	
 	private void openInventory() {
-		System.out.println("미구현");
+		PageManager.getInstance().pushPage(PageType.INVENTORY);
 	}
 	
 	private void escape() {
