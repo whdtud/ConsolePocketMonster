@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import table.data.MonsterData;
+import util.FileUtil;
 
 public class MonsterTable {
 
@@ -49,7 +50,7 @@ public class MonsterTable {
 	
 	@SuppressWarnings("unchecked")
 	public void loadJon() {
-		String path = System.getProperty("user.dir") + "/data/MonsterTable.json";
+		String path = FileUtil.getMonsterFilePath();
 		
 		JSONParser parser = new JSONParser();
 		

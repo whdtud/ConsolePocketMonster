@@ -20,9 +20,9 @@ public class PageLoading extends Page {
 	public void printAction() {
 		TableDataManager.getInstance().load();
 		
-		Player.getInstance().loadSaveFile();
+		Player.getInstance().init();
 		
-		if (Player.getInstance().wasInit()) {
+		if (Player.getInstance().hasPocketMon()) {
 			PageManager.getInstance().changePage(PageType.WORLD, null);	
 		} else {
 			PageManager.getInstance().changePage(PageType.PROLOGUE, null);

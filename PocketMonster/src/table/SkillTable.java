@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 import enums.SkillType;
 import table.data.SkillData;
+import util.FileUtil;
 
 public class SkillTable {
 
@@ -32,7 +33,7 @@ public class SkillTable {
 	
 	@SuppressWarnings("unchecked")
 	public void loadJon() {
-		String path = System.getProperty("user.dir") + "/data/SkillTable.json";
+		String path = FileUtil.getSkillFilePath();
 		
 		JSONParser parser = new JSONParser();
 		

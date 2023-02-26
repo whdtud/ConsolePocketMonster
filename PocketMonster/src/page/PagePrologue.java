@@ -40,7 +40,7 @@ public class PagePrologue extends Page {
 	@Override
 	public void printAction() {
 		Player player = Player.getInstance();
-		if (player.wasInit()) {
+		if (player.hasPocketMon()) {
 			System.out.println("뭐하러 다시 돌아왔나? 혼자 있고 싶으니 당장 나가게.");
 			System.out.println("철컥-");
 			PageManager.getInstance().changePage(PageType.WORLD, null);

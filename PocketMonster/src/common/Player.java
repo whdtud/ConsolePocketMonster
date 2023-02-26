@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import enums.TeamType;
 import manager.SpawnManager;
 import manager.TableDataManager;
+import util.FileUtil;
 
 public class Player extends Character {
 
@@ -38,7 +39,11 @@ public class Player extends Character {
 		inventory.addItem(SpawnManager.getInstance().spawnMonsterBall());
 	}
 	
-	public boolean wasInit() {
+	public void init() {
+		loadSaveFile();
+	}
+	
+	public boolean hasPocketMon() {
 		if (pocketMonList.size() > 0) {
 			return true;
 		}
@@ -111,7 +116,7 @@ public class Player extends Character {
 
 	@SuppressWarnings("unchecked")
 	public void loadSaveFile() {
-		String path = System.getProperty("user.dir") + "/data/Save.json";
+		String path = FileUtil.getSaveFilePath();
 		
 		JSONParser parser = new JSONParser();
 		
